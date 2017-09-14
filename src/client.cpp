@@ -35,7 +35,7 @@ void IPCRequest::send() {
 
 }
 
-int run_ipc_client(char* host, int prot) {
+int run_ipc_client(const char* host, int prot) {
 	boost::shared_ptr<TSocket> socket(new TSocket(host, prot));
 	boost::shared_ptr<TTransport> transport(new TBufferedTransport(socket));
 	boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
@@ -55,7 +55,7 @@ int run_ipc_client(char* host, int prot) {
 		clock_t t = clock();
 		for (int i = 0; i < 10000; i++) {
 			int c = client.sum(1000);
-			LOGFMTA("[%d] sum: %d", i, c);
+//			LOGFMTA("[%d] sum: %d", i, c);
 		}
 		clock_t t1 = clock();
 		LOGFMTA("all exec times: %f", ((double) t1 - t) / CLOCKS_PER_SEC);

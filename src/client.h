@@ -1,7 +1,7 @@
 #ifndef __ipc_client_h__
 #define __ipc_client_h__
 
-int run_ipc_client(char* host, int prot);
+int run_ipc_client(const char* host, int prot);
 
 class IPCClient
 {
