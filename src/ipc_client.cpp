@@ -56,7 +56,7 @@ int run_ipc_client(char* host, int prot) {
 		clock_t t = clock();
 		for (int i = 0; i < 10000; i++) {
 			int c = client.sum(1000);
-//			LOGFMTA("sum: %d", c);
+			LOGFMTA("[%d] sum: %d", i, c);
 		}
 		clock_t t1 = clock();
 		LOGFMTA("all exec times: %f", ((double) t1 - t) / CLOCKS_PER_SEC);
