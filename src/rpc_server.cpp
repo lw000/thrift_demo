@@ -63,7 +63,7 @@ public:
 int run_ipc_server_simple(const char* host, int port) {
 	shared_ptr<ServerHandler> handler(new ServerHandler());
 	shared_ptr<TProcessor> processor(new ServerProcessor(handler));
-	shared_ptr<TServerTransport> serverTransport(new TServerSocket("0.0.0.0", port));
+	shared_ptr<TServerTransport> serverTransport(new TServerSocket(host, port));
 	shared_ptr<TTransportFactory> transportFactory(
 			new TBufferedTransportFactory());
 	shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
