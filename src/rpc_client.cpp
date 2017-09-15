@@ -37,7 +37,8 @@ void IPCRequest::send() {
 
 int run_ipc_client(const char* host, int prot) {
 	boost::shared_ptr<TSocket> socket(new TSocket(host, prot));
-	boost::shared_ptr<TTransport> transport(new TBufferedTransport(socket));
+	//boost::shared_ptr<TTransport> transport(new TBufferedTransport(socket));
+	boost::shared_ptr<TTransport> transport(new TFramedTransport(socket));
 	boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
 
 	LW::ServerClient client(protocol);

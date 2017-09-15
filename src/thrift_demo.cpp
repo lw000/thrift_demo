@@ -36,7 +36,7 @@ static void thread_run_ipc_client(void* args) {
 
 static void thread_run_ipc_server(void* args) {
 	thread_args * targs = (thread_args*) (args);
-	run_ipc_server(targs->addr.c_str(), targs->port);
+	run_ipc_nonblocking_server(targs->addr.c_str(), targs->port);
 }
 
 int main(int argc, char** argv) {
