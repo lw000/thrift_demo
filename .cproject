@@ -27,6 +27,7 @@
 									<listOptionValue builtIn="false" value="/usr/include/c++/4.8.5"/>
 									<listOptionValue builtIn="false" value="/usr/include"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/thrift_demo}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/common/include}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1201813819" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -37,6 +38,7 @@
 									<listOptionValue builtIn="false" value="/usr/include/c++/4.8.5"/>
 									<listOptionValue builtIn="false" value="/usr/include"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/thrift_demo}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/common/include}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1261033968" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -44,6 +46,8 @@
 							<tool command="g++ -std=c++0x -lpthread" id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1486829679" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.userobjs.1539060023" name="Other objects" superClass="gnu.cpp.link.option.userobjs" useByScannerDiscovery="false" valueType="userObjs">
 									<listOptionValue builtIn="false" value="/usr/local/lib/libthrift.a"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/common/Debug/libcommon.a}&quot;"/>
+									<listOptionValue builtIn="false" value="/usr/local/lib64/libjsoncpp.a"/>
 									<listOptionValue builtIn="false" value="/usr/local/lib/liblog4z.a"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1385839371" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
