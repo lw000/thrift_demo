@@ -29,11 +29,7 @@ public:
 	}
 
 	virtual int32_t put(const Student& s) {
-//		printf("%5d, %15d, %3d, %s \n", s.sage, s.sno, s.ssex, s.sname.c_str());
-		int c = 0;
-		for (int i = 0; i < 1000; i++) {
-			c += i;
-		}
+		printf("%5d, %15d, %3d, %s \n", s.sage, s.sno, s.ssex, s.sname.c_str());
 
 		return 0;
 	}
@@ -64,10 +60,10 @@ public:
 	}
 };
 
-int run_ipc_server_1(int port) {
+int run_ipc_server_simple(const char* host, int port) {
 	shared_ptr<LWServerHandler> handler(new LWServerHandler());
 	shared_ptr<TProcessor> processor(new LWServerProcessor(handler));
-	shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
+	shared_ptr<TServerTransport> serverTransport(new TServerSocket("0.0.0.0", port));
 	shared_ptr<TTransportFactory> transportFactory(
 			new TBufferedTransportFactory());
 	shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
@@ -80,10 +76,10 @@ int run_ipc_server_1(int port) {
 	return 0;
 }
 
-int run_ipc_server(int port) {
+int run_ipc_server(const char* host, int port) {
 	shared_ptr<LWServerHandler> handler(new LWServerHandler());
 	shared_ptr<TProcessor> processor(new LWServerProcessor(handler));
-	shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
+	shared_ptr<TServerTransport> serverTransport(new TServerSocket(host, port));
 	shared_ptr<TTransportFactory> transportFactory(
 			new TBufferedTransportFactory());
 	shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());

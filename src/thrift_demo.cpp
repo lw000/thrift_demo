@@ -9,16 +9,20 @@
 
 #include <unistd.h>
 #include <stdio.h>
-#include <iostream>
-#include <signal.h>
+#include <fstream>
 #include <thread>
 #include <getopt.h>
+#include <cassert>
 
 #include <src/client.h>
 #include <src/server.h>
 
+#include <json/json.h>
+
 #include <log4z/log4z.h>
 using namespace zsummer::log4z;
+
+#include <utils.h>
 
 struct thread_args {
 	std::string addr;
@@ -32,91 +36,92 @@ static void thread_run_ipc_client(void* args) {
 
 static void thread_run_ipc_server(void* args) {
 	thread_args * targs = (thread_args*) (args);
-	run_ipc_server(targs->port);
+	run_ipc_server(targs->addr.c_str(), targs->port);
 }
 
 int main(int argc, char** argv) {
-#if defined(WIN32) || defined(_WIN32)
-	WSADATA WSAData;
-	int ret;
-	if (ret = WSAStartup(MAKEWORD(2, 2), &WSAData))
-	{
-		std::cout << "can't initilize winsock.dll" << std::endl;
-		std::cout << "error code:" << WSAGetLastError() << std::endl;
-		return 1;
-	}
-#endif
-
-	//-t s -h 127.0.0.1 -p 8001
-	//-t c -h 127.0.0.1 -p 8001
-//	if (argc < 7) {
-//		printf("please input s or c. \n");
-//		return 0;
-//	}
-
-//	std::string type;
-//	std::string host;
-//	int port;
-//
-//	int ch = 0;
-//	while ((ch = getopt(argc, argv, "t:h:p:")) != -1) {
-//		switch (ch) {
-//		case 't': {
-//			type = optarg;
-//		}
-//			break;
-//		case 'h': {
-//			host = optarg;
-//		}
-//			break;
-//		case 'p': {
-//			port = atoi(optarg);
-//		}
-//			break;
-//		default: {
-//			fprintf(stderr, "Usage: thrift_demo "
-//					"[--h=<h>] [--host] "
-//					"[--p=<p>] [--port]\n");
-//			exit(1);
-//		}
-//			break;
-//		}
-//	}
 
 	if (argc < 2) {
-		printf("client please input (-t s) or (-t c). \n");
 		return 0;
 	}
 
-	std::string t;
-
+	std::string conf;
 	int ch = 0;
-	while ((ch = getopt(argc, argv, "t:")) != -1) {
+	while ((ch = getopt(argc, argv, "c:")) != -1) {
 		switch (ch) {
-		case 't': {
+		case 'c': {
 			if (optarg != NULL) {
-				t = optarg;
+				conf = optarg;
 			}
 			break;
 		}
 		default: {
-			fprintf(stderr, "(-t s) or (-t c)\n");
-			exit(1);
+			fprintf(stderr, "(-c config.conf)\n");
 			break;
 		}
 		}
 	}
+
+	if (conf.empty()) {
+		return 0;
+	}
+
+	//	{
+	//		"platform":"s",
+	//	    "host": "127.0.0.1",
+	//	    "port": 8003
+	//	}
+
+	std::string s;
+	std::string host;
+	int port;
+
+#if 0
+	char buff[1024];
+	FILE *f;
+	f = fopen(conf.c_str(), "r");
+	fseek(f, 0, SEEK_SET);
+	int i = fread(buff, sizeof(buff), 1, f);
+	fclose(f);
+
+	Json::Reader reader;
+	Json::Value root;
+	if (!reader.parse(buff, root, false)) {
+		return -1;
+	}
+
+	s = root["platform"].asString();
+	host = root["host"].asString();
+	port = root["port"].asInt();
+
+#else
+	std::ifstream ifs;
+	ifs.open(conf.c_str());
+	assert(ifs.is_open());
+
+	Json::Reader reader;
+	Json::Value root;
+	if (!reader.parse(ifs, root, false)) {
+		return -1;
+	}
+
+	s = root["platform"].asString();
+	host = root["host"].asString();
+	port = root["port"].asInt();
+#endif
+
+	SocketInit sInit;
 
 	ILog4zManager::getInstance()->start();
 
 	//"47.91.140.210"
 
-	if (t.compare("s") == 0) {
-		thread_args targs = { "127.0.0.1", 8001 };
+	thread_args targs = { host, port };
+
+	if (s.compare("s") == 0) {
 		std::thread t(thread_run_ipc_server, &targs);
 		t.join();
-	} else if (t.compare("c") == 0) {
-		thread_args targs = { "127.0.0.1", 8001 };
+	} else if (s.compare("c") == 0) {
 		std::thread t(thread_run_ipc_client, &targs);
 		t.join();
 	} else {
@@ -124,16 +129,8 @@ int main(int argc, char** argv) {
 	}
 
 	while (1) {
-#ifdef WIN32
-		::Sleep(1000);
-#else
-		::sleep(1);
-#endif
+		lw_sleep(1);
 	}
-
-#ifdef WIN32
-	WSACleanup();
-#endif
 
 	return 0;
 }
