@@ -14,8 +14,8 @@
 #include <getopt.h>
 #include <cassert>
 
-#include <src/client.h>
-#include <src/server.h>
+#include <src/rpc_client.h>
+#include <src/rpc_server.h>
 
 #include <json/json.h>
 

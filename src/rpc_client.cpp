@@ -1,8 +1,8 @@
 // ipc_client.cpp :
 //
 
-#include <gen-cpp/LWServer.h>
-#include <src/client.h>
+#include <gen-cpp/Server.h>
+#include <src/rpc_client.h>
 #include <thrift/transport/TSocket.h>  
 #include <thrift/transport/TBufferTransports.h>  
 #include <thrift/protocol/TBinaryProtocol.h>  
@@ -40,7 +40,7 @@ int run_ipc_client(const char* host, int prot) {
 	boost::shared_ptr<TTransport> transport(new TBufferedTransport(socket));
 	boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
 
-	LW::LWServerClient client(protocol);
+	LW::ServerClient client(protocol);
 
 	try {
 		transport->open();
