@@ -45,11 +45,14 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.319918938" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug"/>
 							<tool command="g++ -std=c++0x -lpthread" id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1486829679" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.userobjs.1539060023" name="Other objects" superClass="gnu.cpp.link.option.userobjs" useByScannerDiscovery="false" valueType="userObjs">
+									<listOptionValue builtIn="false" value="/usr/local/lib/libevent.a"/>
+									<listOptionValue builtIn="false" value="/usr/local/lib/libthriftnb.a"/>
 									<listOptionValue builtIn="false" value="/usr/local/lib/libthrift.a"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/common/Debug/libcommon.a}&quot;"/>
 									<listOptionValue builtIn="false" value="/usr/local/lib64/libjsoncpp.a"/>
 									<listOptionValue builtIn="false" value="/usr/local/lib/liblog4z.a"/>
 								</option>
+								<option id="gnu.cpp.link.option.flags.824247377" superClass="gnu.cpp.link.option.flags" useByScannerDiscovery="false" value=" -levent -lthrift -lthriftnb" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1385839371" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -61,7 +64,8 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="common|lm|src/gen-cpp|gen-cpp|src/lm" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="CommonServer|common|lm|src/gen-cpp|gen-cpp|src/lm" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="CommonServer"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="gen-cpp"/>
 					</sourceEntries>
 				</configuration>
@@ -110,6 +114,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="CommonServer"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="gen-cpp"/>
 						<entry excluding="lm|gen-cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
