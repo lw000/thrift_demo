@@ -22,7 +22,8 @@
 #include <log4z/log4z.h>
 using namespace zsummer::log4z;
 
-#include <utils.h>
+#include "net.h"
+#include "utils.h"
 
 struct thread_args {
 	std::string addr;

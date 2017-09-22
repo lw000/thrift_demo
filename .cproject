@@ -28,6 +28,8 @@
 									<listOptionValue builtIn="false" value="/usr/include"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/thrift_demo}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/common/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lw_common/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lw_net/include}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1201813819" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -46,13 +48,14 @@
 							<tool command="g++ -std=c++0x -lpthread" id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1486829679" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.userobjs.1539060023" name="Other objects" superClass="gnu.cpp.link.option.userobjs" useByScannerDiscovery="false" valueType="userObjs">
 									<listOptionValue builtIn="false" value="/usr/local/lib/libevent.a"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lw_net/Debug/liblw_net.a}&quot;"/>
 									<listOptionValue builtIn="false" value="/usr/local/lib/libthriftnb.a"/>
 									<listOptionValue builtIn="false" value="/usr/local/lib/libthrift.a"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/common/Debug/libcommon.a}&quot;"/>
 									<listOptionValue builtIn="false" value="/usr/local/lib64/libjsoncpp.a"/>
 									<listOptionValue builtIn="false" value="/usr/local/lib/liblog4z.a"/>
 								</option>
-								<option id="gnu.cpp.link.option.flags.824247377" superClass="gnu.cpp.link.option.flags" useByScannerDiscovery="false" value=" -levent -lthrift -lthriftnb" valueType="string"/>
+								<option id="gnu.cpp.link.option.flags.824247377" name="Linker flags" superClass="gnu.cpp.link.option.flags" useByScannerDiscovery="false" value=" -levent -lthrift -lthriftnb" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1385839371" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
