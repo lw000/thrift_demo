@@ -48,8 +48,8 @@ int run_ipc_thread_server(const char* host, int port) {
 	shared_ptr<ThreadManager> threadManager =
 			ThreadManager::newSimpleThreadManager(4);
 
-	shared_ptr<PosixThreadFactory> threadFactory =
-			shared_ptr<PosixThreadFactory>(new PosixThreadFactory());
+	shared_ptr<PlatformThreadFactory> threadFactory =
+		shared_ptr<PlatformThreadFactory>(new PlatformThreadFactory());
 
 	threadManager->threadFactory(threadFactory);
 
@@ -74,8 +74,8 @@ int run_ipc_threadpool_server(const char* host, int port) {
 	shared_ptr<ThreadManager> threadManager =
 			ThreadManager::newSimpleThreadManager(6);
 
-	shared_ptr<PosixThreadFactory> threadFactory =
-			shared_ptr<PosixThreadFactory>(new PosixThreadFactory());
+	shared_ptr<PlatformThreadFactory> threadFactory =
+		shared_ptr<PlatformThreadFactory>(new PlatformThreadFactory());
 
 	threadManager->threadFactory(threadFactory);
 

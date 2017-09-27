@@ -13,7 +13,7 @@ using namespace apache::thrift::transport;
 
 using boost::shared_ptr;
 
-#include <log4z/log4z.h>
+#include "log4z.h"
 using namespace zsummer::log4z;
 
 IPCClient::IPCClient(char* host, int prot) {

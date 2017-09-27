@@ -5,9 +5,9 @@
 #include <winsock2.h>
 #else
 #include <sys/socket.h>
+#include <unistd.h>
 #endif
 
-#include <unistd.h>
 #include <stdio.h>
 #include <fstream>
 #include <thread>
@@ -17,9 +17,18 @@
 #include <src/rpc_client.h>
 #include <src/rpc_server.h>
 
-#include <json/json.h>
+#if 0
+//#include <json/json.h>
+#else
+#include "rapidjson/document.h"
+#include "rapidjson/rapidjson.h"
+#include "rapidjson/reader.h"
 
-#include <log4z/log4z.h>
+using namespace rapidjson;
+
+#endif
+
+#include "log4z.h"
 using namespace zsummer::log4z;
 
 #include "net.h"
@@ -76,41 +85,38 @@ int main(int argc, char** argv) {
 	std::string s;
 	std::string host;
 	int port;
-
+	{
+		std::ifstream ifs;
+		ifs.open(conf.c_str());
+		assert(ifs.is_open());
 #if 0
-	char buff[1024];
-	FILE *f;
-	f = fopen(conf.c_str(), "r");
-	fseek(f, 0, SEEK_SET);
-	int i = fread(buff, sizeof(buff), 1, f);
-	fclose(f);
-
-	Json::Reader reader;
-	Json::Value root;
-	if (!reader.parse(buff, root, false)) {
-		return -1;
-	}
-
-	s = root["platform"].asString();
-	host = root["host"].asString();
-	port = root["port"].asInt();
-
+		Json::Reader reader;
+		Json::Value root;
+		if (!reader.parse(ifs, root, false)) {
+			return -1;
+		}
+		s = root["platform"].asString();
+		host = root["host"].asString();
+		port = root["port"].asInt();
 #else
-	std::ifstream ifs;
-	ifs.open(conf.c_str());
-	assert(ifs.is_open());
+		std::string line;
+		std::string strjson;
+		while (std::getline(ifs, line))
+		{
+			strjson.append(line);
+		}
 
-	Json::Reader reader;
-	Json::Value root;
-	if (!reader.parse(ifs, root, false)) {
-		return -1;
-	}
-
-	s = root["platform"].asString();
-	host = root["host"].asString();
-	port = root["port"].asInt();
+		rapidjson::Document root;
+		root.Parse<0>(strjson.c_str());
+		if (root.HasParseError()) {
+			return -1;
+		}
+		s = root["platform"].GetString();
+		host = root["host"].GetString();
+		port = root["port"].GetInt();
 #endif
-
+	}
+	
 	SocketInit sInit;
 
 	ILog4zManager::getInstance()->start();

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{2425419f-baf1-4c76-b19c-c01c35e56784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gen-cpp">
+      <UniqueIdentifier>{a3a6cdd5-f287-4c2a-993f-95ddb71fed4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CommonServer">
+      <UniqueIdentifier>{84b7b04d-8946-4cea-ad0e-0029bc60984c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\thrift_demo.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonServer\StudentServerHandlerHandler.cpp">
+      <Filter>CommonServer</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonServer\StudentServerHandlerHandler_test.cpp">
+      <Filter>CommonServer</Filter>
+    </ClCompile>
+    <ClCompile Include="gen-cpp\package_constants.cpp">
+      <Filter>gen-cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="gen-cpp\package_types.cpp">
+      <Filter>gen-cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="gen-cpp\Server.cpp">
+      <Filter>gen-cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="gen-cpp\server_constants.cpp">
+      <Filter>gen-cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="gen-cpp\server_types.cpp">
+      <Filter>gen-cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rpc_client.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rpc_server.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CommonServer\StudentServerHandlerHandler.h">
+      <Filter>CommonServer</Filter>
+    </ClInclude>
+    <ClInclude Include="gen-cpp\package_constants.h">
+      <Filter>gen-cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="gen-cpp\package_types.h">
+      <Filter>gen-cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="gen-cpp\Server.h">
+      <Filter>gen-cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="gen-cpp\server_constants.h">
+      <Filter>gen-cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="gen-cpp\server_types.h">
+      <Filter>gen-cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rpc_client.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rpc_server.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
